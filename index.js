@@ -1,12 +1,12 @@
-const express=require('express');
-const connectToMongoDB=require('./db');
-const cors=require('cors');
+const express = require("express");
+const connectToMongoDB = require("./db");
+const cors = require("cors");
 
 //calling mongodb atlas connection method
 connectToMongoDB();
 
-const app=express();
-const port=5000;
+const app = express();
+const port = 5000;
 
 app.use(cors());
 // app.use((req,res,next)=>{
@@ -18,13 +18,14 @@ app.use(cors());
 //     next();
 // })
 
-app.get('/',(req,res)=>{
-    res.send('Hello World');
-})
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.use(express.json());
-app.use('/api',require('./routes/user'));
+app.use("/api", require("./routes/user"));
+app.use("/api", require("./routes/displayFoodItem"));
 
-app.listen(port,()=>{
-    console.log(`Server is listening at port ${port}`);
-})
+app.listen(port, () => {
+  console.log(`Server is listening at port ${port}`);
+});
